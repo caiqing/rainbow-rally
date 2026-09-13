@@ -4,6 +4,8 @@
 
 纯前端（HTML5 Canvas + 原生 JavaScript，零依赖、零外部素材）编写，双击即玩，可离线运行。音效与 BGM 由 WebAudio 实时合成。
 
+> 🎮 **在线试玩**：<https://caiqing.github.io/rainbow-rally/> —— 点开即玩，无需安装
+>
 > 📖 完整设计文档：[docs/游戏设计文档.md](docs/游戏设计文档.md)
 >
 > 当前进度：**M0 手感原型**（奶油沙漠单赛道）
