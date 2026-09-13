@@ -1,0 +1,218 @@
+/* 彩虹拉力队 - 界面样式（糖果色 · 圆角 · 亲子向） */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #2E2620;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  user-select: none; -webkit-user-select: none;
+  touch-action: none;
+}
+
+#stage {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+#game {
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 10px 60px rgba(0,0,0,0.5);
+}
+
+.hidden { display: none !important; }
+
+/* ---------- 通用卡片与按钮 ---------- */
+.screen {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(46, 32, 22, 0.45);
+  backdrop-filter: blur(2px);
+}
+.card {
+  background: linear-gradient(180deg, #FFF9EC, #FFEDCB);
+  border: 4px solid #5B4A3F;
+  border-radius: 26px;
+  padding: 26px 34px;
+  text-align: center;
+  color: #5B4A3F;
+  box-shadow: 0 12px 0 rgba(91,74,63,0.35), 0 24px 60px rgba(0,0,0,0.35);
+  max-width: 92vw;
+}
+.logo {
+  font-size: 44px; font-weight: 900; letter-spacing: 2px;
+  background: linear-gradient(90deg, #FF7B7B, #FFA94D, #FFE066, #7FD8A4, #7EC8E3, #9B8CE3);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(91,74,63,0.35));
+}
+.logo.small { font-size: 30px; -webkit-text-fill-color: #5B4A3F; background: none; }
+.sub { font-size: 15px; color: #9A8574; margin: 4px 0 16px; }
+
+.big-btn {
+  display: block; width: 100%;
+  margin: 12px 0 6px;
+  padding: 14px 30px;
+  font-size: 24px; font-weight: 900; color: #FFF; letter-spacing: 4px;
+  background: #FF7B7B;
+  border: 3px solid #5B4A3F; border-radius: 999px;
+  box-shadow: 0 6px 0 #D94F4F;
+  cursor: pointer;
+  transition: transform 0.06s;
+}
+.mid-btn {
+  padding: 10px 22px;
+  font-size: 17px; font-weight: 800; color: #5B4A3F;
+  background: #FFE066;
+  border: 3px solid #5B4A3F; border-radius: 999px;
+  box-shadow: 0 5px 0 #D9B93F;
+  cursor: pointer;
+}
+.big-btn:active, .mid-btn:active, .diff-btn:active, .round-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0,0,0,0.25); }
+
+/* 难度三选 */
+#diffRow { display: flex; gap: 10px; justify-content: center; margin-bottom: 6px; }
+.diff-btn {
+  flex: 1; min-width: 150px;
+  padding: 10px 8px;
+  display: flex; flex-direction: column; gap: 4px;
+  background: #FFF6E8;
+  border: 3px solid #D8C7B4; border-radius: 16px;
+  font-size: 16px; color: #5B4A3F; cursor: pointer;
+  transition: all 0.12s;
+}
+.diff-btn span { font-size: 11px; color: #A08A76; }
+.diff-btn.on {
+  background: #FFE9D0; border-color: #FF7B7B;
+  box-shadow: 0 4px 0 #F2B8A0;
+  transform: scale(1.04);
+}
+.help { font-size: 12.5px; color: #9A8574; line-height: 1.9; margin-top: 10px; }
+.best { margin-top: 8px; font-size: 14px; color: #7A6A58; }
+
+/* ---------- HUD ---------- */
+#hud { position: absolute; inset: 0; pointer-events: none; }
+.hud-top {
+  position: absolute; top: 14px; left: 16px; right: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.pill {
+  background: rgba(255,249,236,0.92);
+  border: 2.5px solid #5B4A3F; border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 17px; font-weight: 800; color: #5B4A3F;
+  display: flex; gap: 5px; align-items: center;
+}
+.spacer { flex: 1; }
+.round-btn {
+  pointer-events: auto;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255,249,236,0.92);
+  border: 2.5px solid #5B4A3F;
+  font-size: 18px; cursor: pointer;
+  box-shadow: 0 3px 0 rgba(91,74,63,0.4);
+}
+.heart {
+  width: 20px; height: 20px; display: inline-block;
+  background: #D8C7B4;
+  clip-path: path('M10 17 C2 10 0 6 3 3 C6 0 9 2 10 4 C11 2 14 0 17 3 C20 6 18 10 10 17 Z');
+}
+.heart.full { background: #FF5252; }
+.can {
+  width: 14px; height: 18px; display: inline-block;
+  background: #E8DCC8; border-radius: 4px; border: 2px solid #B4A58E;
+}
+.can.full { background: #FFA94D; border-color: #5B4A3F; }
+
+.hud-bottom {
+  position: absolute; left: 16px; right: 16px; bottom: 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.energy-wrap {
+  width: 240px; height: 16px;
+  background: rgba(255,249,236,0.85);
+  border: 2.5px solid #5B4A3F; border-radius: 999px;
+  overflow: hidden;
+}
+#energy { height: 100%; width: 50%; background: linear-gradient(90deg, #FFE066, #FFA94D); transition: width 0.1s; }
+.progress-wrap {
+  position: relative; height: 14px;
+  background: rgba(255,249,236,0.85);
+  border: 2.5px solid #5B4A3F; border-radius: 999px;
+  overflow: visible;
+}
+#progress {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #FF7B7B, #FFA94D, #FFE066, #7FD8A4, #7EC8E3);
+  border-radius: 999px;
+  transition: width 0.2s;
+}
+.progress-flag { position: absolute; right: -6px; top: -13px; font-size: 15px; }
+
+/* ---------- 触屏按钮 ---------- */
+#touch { position: absolute; inset: 0; pointer-events: none; }
+.touch-btn {
+  pointer-events: auto;
+  position: absolute; bottom: 52px;
+  width: 108px; height: 108px;
+  border-radius: 50%;
+  border: 4px solid #5B4A3F;
+  font-size: 34px;
+  color: #5B4A3F;
+  opacity: 0.85;
+  box-shadow: 0 6px 0 rgba(91,74,63,0.4);
+}
+.touch-btn i { display: block; font-style: normal; font-size: 13px; font-weight: 800; }
+.touch-btn.jump { right: 26px; background: rgba(255,224,102,0.92); }
+.touch-btn.boost { right: 152px; background: rgba(127,216,164,0.92); }
+.touch-btn:active { transform: scale(0.93); }
+
+/* ---------- 结算 ---------- */
+.result-card { min-width: 380px; }
+#resStar { font-size: 84px; font-weight: 900; line-height: 1; }
+.star-S { color: #FFB300; text-shadow: 0 3px 0 #D99000; }
+.star-A { color: #FF7B7B; text-shadow: 0 3px 0 #D94F4F; }
+.star-B { color: #7EC8E3; text-shadow: 0 3px 0 #4F9DC9; }
+#resTitle { font-size: 26px; font-weight: 900; margin-top: 4px; }
+#resMsg { font-size: 14px; color: #9A8574; margin: 4px 0 12px; }
+#resStats { font-size: 16px; line-height: 2; color: #5B4A3F; }
+#resStats b { color: #E85555; }
+#resStats .gear-line { color: #9B8CE3; font-weight: 800; }
+#resStats .earn { margin-top: 6px; border-top: 2px dashed #D8C7B4; padding-top: 8px; }
+#resStats .bank-line { font-size: 13px; color: #A08A76; }
+.row { display: flex; gap: 12px; justify-content: center; align-items: center; margin-top: 8px; }
+.result-card .row, .pause-card .row { flex-direction: row; }
+.result-card #btnAgain { width: auto; display: inline-block; }
+
+/* ---------- Toast ---------- */
+#toast {
+  position: absolute; top: 74px; left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(91,74,63,0.92);
+  color: #FFF6E8;
+  font-size: 16px; font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 999px;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- 竖屏提示 ---------- */
+#rotate {
+  display: none;
+  position: fixed; inset: 0; z-index: 99;
+  background: linear-gradient(160deg, #FFF3D6, #FFD9A0);
+  color: #5B4A3F;
+  font-size: 26px; font-weight: 900; line-height: 2;
+  text-align: center;
+  align-items: center; justify-content: center;
+}
+#rotate small { font-size: 14px; font-weight: 500; color: #9A8574; }
+@media (orientation: portrait) and (max-width: 920px) {
+  #rotate { display: flex; }
+}
